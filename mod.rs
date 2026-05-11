@@ -334,6 +334,9 @@ impl Default for GrapplePlugin {
 impl QuartzPlugin for GrapplePlugin {
     fn name(&self) -> &str { "grapple" }
 
+    fn as_any(&self) -> &dyn std::any::Any { self }
+    fn as_any_mut(&mut self) -> &mut dyn std::any::Any { self }
+
     /// Handle grapple commands dispatched via Action::PluginCall.
     fn on_call(&mut self, canvas: &mut Canvas, payload: &dyn std::any::Any) -> bool {
         if let Some(cmd) = payload.downcast_ref::<GrappleCommand>() {
